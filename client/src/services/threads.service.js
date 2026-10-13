@@ -19,8 +19,10 @@
 // ─────────────────────────────────────────────────────────────
 import apiClient from "./apiClient";
 
-export async function getThreads() {
-  // TODO: accept `filters` and pass it as { params: filters }
-  const response = await apiClient.get("/api/threads");
-  return response.data;
+export function getThreads(filters) {
+  return apiClient
+    .get("/api/threads", {
+      params: filters,
+    })
+    .then((res) => res.data);
 }
